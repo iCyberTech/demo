@@ -20,7 +20,7 @@
             line-height: 1.6;
         }
 
-        /* Header */
+       /* Header */
         header {
             display: flex;
             justify-content: space-between;
@@ -32,6 +32,17 @@
             top: 0;
             z-index: 1000;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        @keyframes ladleUnderline {
+            0% {
+                transform: scaleX(0.8);
+            }
+            50% {
+                transform: scaleX(1.2);
+            }
+            100% {
+                transform: scaleX(0.8);
+            }
         }
 
         .logo {
