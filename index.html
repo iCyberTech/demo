@@ -678,6 +678,43 @@
                 font-size: 12px;
             }
         }
+
+        /* Cancel Button for Cart Items */
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .cart-item img {
+            width: 50px;
+            height: 50px;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+
+        .cart-item-details {
+            flex: 1;
+            margin-left: 10px;
+        }
+
+        .cart-item-details span {
+            display: block;
+            font-size: 14px;
+        }
+
+        .cart-item-remove {
+            cursor: pointer;
+            color: #ff6f61;
+            font-size: 18px;
+            margin-left: 10px;
+        }
+
+        .cart-item-remove:hover {
+            color: #ff4a3d;
+        }
     </style>
 </head>
 <body>
@@ -824,34 +861,6 @@
                     <p>AED25.00</p>
                     <button class="add-to-cart" data-image="food8.jpg" data-name="Jollof With Fried Fish & Plantain" data-price="25.00">Add to Cart</button>
                 </div>
-                
-                <!--<div class="product-card" data-name="Food 2">
-                    <img src="food2.jpg" alt="Food 2">
-                    <h3>Food 2</h3>
-                    <p>AED12.00</p>
-                    <button class="add-to-cart" data-image="food2.jpg" data-name="Food 2" data-price="12.00">Add to Cart</button>
-                </div>
-                
-                <div class="product-card" data-name="Food 2">
-                    <img src="food2.jpg" alt="Food 2">
-                    <h3>Food 2</h3>
-                    <p>AED12.00</p>
-                    <button class="add-to-cart" data-image="food2.jpg" data-name="Food 2" data-price="12.00">Add to Cart</button>
-                </div>
-                
-                <div class="product-card" data-name="Food 2">
-                    <img src="food2.jpg" alt="Food 2">
-                    <h3>Food 2</h3>
-                    <p>AED12.00</p>
-                    <button class="add-to-cart" data-image="food2.jpg" data-name="Food 2" data-price="12.00">Add to Cart</button>
-                </div>
-                
-                <div class="product-card" data-name="Food 2">
-                    <img src="food2.jpg" alt="Food 2">
-                    <h3>Food 2</h3>
-                    <p>AED12.00</p>
-                    <button class="add-to-cart" data-image="food2.jpg" data-name="Food 2" data-price="12.00">Add to Cart</button>
-                </div>-->
             </div>
         </div>
     </div>
@@ -1232,17 +1241,27 @@
         function updateCartItems() {
             cartItemsList.innerHTML = cart
                 .map(
-                    (item) => `
-                    <li>
+                    (item, index) => `
+                    <li class="cart-item">
                         <img src="${item.image}" alt="Cart Item">
-                        <span>${item.name}</span>
-                        <span>Qty: ${item.quantity}</span>
-                        <span>AED${item.total.toFixed(2)}</span>
+                        <div class="cart-item-details">
+                            <span>${item.name}</span>
+                            <span>Qty: ${item.quantity}</span>
+                            <span>AED${item.total.toFixed(2)}</span>
+                        </div>
+                        <span class="cart-item-remove" onclick="removeCartItem(${index})">&times;</span>
                     </li>
                 `
                 )
                 .join("");
             updateCartTotal();
+        }
+
+        // Remove item from cart
+        function removeCartItem(index) {
+            cart.splice(index, 1);
+            updateCartCount();
+            updateCartItems();
         }
 
         // Calculate and display the total price of all items in the cart
