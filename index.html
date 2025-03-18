@@ -715,6 +715,71 @@
         .cart-item-remove:hover {
             color: #ff4a3d;
         }
+
+        /* Enhanced Sign-Up Modal */
+        #signup-modal .modal-content {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: #fff;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+        }
+
+        #signup-modal h2 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        #signup-form input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: none;
+            border-radius: 25px;
+            font-size: 16px;
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+            outline: none;
+        }
+
+        #signup-form input::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        #signup-form button {
+            width: 100%;
+            padding: 10px;
+            background: #ff6f61;
+            color: #fff;
+            border: none;
+            border-radius: 25px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background 0.3s ease, transform 0.3s ease;
+        }
+
+        #signup-form button:hover {
+            background: #ff4a3d;
+            transform: translateY(-2px);
+        }
+
+        /* Mobile Keyboard Responsiveness */
+        @media (max-width: 480px) {
+            #signup-modal .modal-content {
+                padding: 20px;
+            }
+
+            #signup-form input {
+                font-size: 14px;
+                padding: 8px;
+            }
+
+            #signup-form button {
+                font-size: 14px;
+                padding: 8px;
+            }
+        }
     </style>
 </head>
 <body>
