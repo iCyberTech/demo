@@ -646,38 +646,38 @@
         <div class="product-card" data-name="Product 1">
             <img src="image1.jpg" alt="Product 1">
             <h3>Product 1</h3>
-            <p>$10.00</p>
+            <p>AED10.00</p>
             <button class="add-to-cart" data-image="image1.jpg" data-name="Product 1" data-price="10.00">Add to Cart</button>
         </div>
         <div class="product-card" data-name="Product 2">
             <img src="image2.jpg" alt="Product 2">
             <h3>Product 2</h3>
-            <p>$15.00</p>
+            <p>AED15.00</p>
             <button class="add-to-cart" data-image="image2.jpg" data-name="Product 2" data-price="15.00">Add to Cart</button>
         </div>
         <div class="product-card" data-name="Product 3">
             <img src="image3.jpg" alt="Product 3">
             <h3>Product 3</h3>
-            <p>$20.00</p>
+            <p>AED20.00</p>
             <button class="add-to-cart" data-image="image3.jpg" data-name="Product 3" data-price="20.00">Add to Cart</button>
         </div>
         <div class="product-card" data-name="Product 4">
             <img src="image4.jpg" alt="Product 4">
             <h3>Product 4</h3>
-            <p>$25.00</p>
+            <p>AED25.00</p>
             <button class="add-to-cart" data-image="image4.jpg" data-name="Product 4" data-price="25.00">Add to Cart</button>
         </div>
         <!-- Add more products with different sizes -->
         <div class="product-card" data-name="Product 5">
             <img src="image5.jpg" alt="Product 5">
             <h3>Product 5</h3>
-            <p>$30.00</p>
+            <p>AED30.00</p>
             <button class="add-to-cart" data-image="image5.jpg" data-name="Product 5" data-price="30.00">Add to Cart</button>
         </div>
         <div class="product-card" data-name="Product 6">
             <img src="image6.jpg" alt="Product 6">
             <h3>Product 6</h3>
-            <p>$35.00</p>
+            <p>AED35.00</p>
             <button class="add-to-cart" data-image="image6.jpg" data-name="Product 6" data-price="35.00">Add to Cart</button>
         </div>
     </div>
@@ -691,13 +691,13 @@
                 <div class="product-card" data-name="Food 1">
                     <img src="food1.jpg" alt="Food 1">
                     <h3>Food 1</h3>
-                    <p>$8.00</p>
+                    <p>AED8.00</p>
                     <button class="add-to-cart" data-image="food1.jpg" data-name="Food 1" data-price="8.00">Add to Cart</button>
                 </div>
                 <div class="product-card" data-name="Food 2">
                     <img src="food2.jpg" alt="Food 2">
                     <h3>Food 2</h3>
-                    <p>$12.00</p>
+                    <p>AED12.00</p>
                     <button class="add-to-cart" data-image="food2.jpg" data-name="Food 2" data-price="12.00">Add to Cart</button>
                 </div>
             </div>
@@ -713,13 +713,13 @@
                 <div class="product-card" data-name="Extra 1">
                     <img src="extra1.jpg" alt="Extra 1">
                     <h3>Extra 1</h3>
-                    <p>$5.00</p>
+                    <p>AED5.00</p>
                     <button class="add-to-cart" data-image="extra1.jpg" data-name="Extra 1" data-price="5.00">Add to Cart</button>
                 </div>
                 <div class="product-card" data-name="Extra 2">
                     <img src="extra2.jpg" alt="Extra 2">
                     <h3>Extra 2</h3>
-                    <p>$7.00</p>
+                    <p>AED7.00</p>
                     <button class="add-to-cart" data-image="extra2.jpg" data-name="Extra 2" data-price="7.00">Add to Cart</button>
                 </div>
             </div>
@@ -916,7 +916,7 @@
                 };
                 document.getElementById("modal-image").src = selectedItem.image;
                 document.getElementById("modal-name").textContent = selectedItem.name;
-                document.getElementById("modal-price").textContent = `Price: $${selectedItem.price}`;
+                document.getElementById("modal-price").textContent = `Price: AED${selectedItem.price}`;
                 updateTotalPrice();
                 modal.style.display = "flex";
             });
@@ -928,7 +928,7 @@
         function updateTotalPrice() {
             const quantity = parseInt(quantitySelect.value);
             const totalPrice = selectedItem.price * quantity;
-            totalPriceDisplay.textContent = `Total: $${totalPrice.toFixed(2)}`;
+            totalPriceDisplay.textContent = `Total: AED${totalPrice.toFixed(2)}`;
         }
 
         // Add item to cart when "Buy" is clicked
@@ -1005,7 +1005,7 @@
                         <img src="${item.image}" alt="Cart Item">
                         <span>${item.name}</span>
                         <span>Qty: ${item.quantity}</span>
-                        <span>$${item.total.toFixed(2)}</span>
+                        <span>AED${item.total.toFixed(2)}</span>
                     </li>
                 `
                 )
@@ -1016,7 +1016,7 @@
         // Calculate and display the total price of all items in the cart
         function updateCartTotal() {
             const total = cart.reduce((sum, item) => sum + item.total, 0);
-            cartTotal.textContent = `Total: $${total.toFixed(2)}`;
+            cartTotal.textContent = `Total: AED${total.toFixed(2)}`;
         }
 
         // Save user information locally and close sign-up modal
@@ -1074,7 +1074,7 @@
             const cartDetails = cart
                 .map(
                     (item) => `
-                    ${item.name} - Qty: ${item.quantity} - Price: $${item.total.toFixed(2)}
+                    ${item.name} - Qty: ${item.quantity} - Price: AED${item.total.toFixed(2)}
                 `
                 )
                 .join("\n");
@@ -1088,7 +1088,7 @@
             formData.append("location", user.location);
             formData.append("landmark", user.landmark);
             formData.append("cart_details", cartDetails);
-            formData.append("total_price", `$${totalPrice.toFixed(2)}`);
+            formData.append("total_price", `AED${totalPrice.toFixed(2)}`);
 
             // Log form data for debugging
             for (let [key, value] of formData.entries()) {
