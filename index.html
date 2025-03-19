@@ -1205,6 +1205,35 @@
         let cart = [];
         let orderHistory = [];
 
+        // Function to update the auth link (Sign Up/Logout)
+        function updateAuthLink() {
+            const user = JSON.parse(localStorage.getItem("user"));
+            if (user) {
+                signupLink.textContent = "Logout";
+                signupLink.removeEventListener("click", openSignupModal);
+                signupLink.addEventListener("click", logoutUser);
+            } else {
+                signupLink.textContent = "Sign Up";
+                signupLink.removeEventListener("click", logoutUser);
+                signupLink.addEventListener("click", openSignupModal);
+            }
+        }
+
+        // Function to open the sign-up modal
+        function openSignupModal() {
+            signupModal.style.display = "flex";
+        }
+
+        // Function to logout the user
+        function logoutUser() {
+            localStorage.removeItem("user");
+            alert("You have been logged out.");
+            updateAuthLink();
+        }
+
+        // Initialize auth link based on user state
+        updateAuthLink();
+
         // Toggle Additional Icons
         function toggleAdditionalIcons() {
             additionalIcons.style.display = additionalIcons.style.display === "flex" ? "none" : "flex";
@@ -1299,11 +1328,6 @@
             cartModal.style.display = "flex";
         });
 
-        // Open sign-up modal when sign-up link is clicked
-        signupLink.addEventListener("click", () => {
-            signupModal.style.display = "flex";
-        });
-
         // Open profile modal when profile icon is clicked
         profileIcon.addEventListener("click", () => {
             const user = JSON.parse(localStorage.getItem("user"));
@@ -1388,6 +1412,7 @@
             localStorage.setItem("user", JSON.stringify(user));
             alert("Sign up successful!");
             signupModal.style.display = "none";
+            updateAuthLink(); // Update the auth link after sign-up
         });
 
         // Search functionality
