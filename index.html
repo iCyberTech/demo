@@ -808,6 +808,17 @@
                 padding: 8px;
             }
         }
+
+        /* Description Input Field in Cart Modal */
+        #description {
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            font-size: 14px;
+            resize: vertical; /* Allow vertical resizing */
+        }
     </style>
 </head>
 <body>
@@ -1087,6 +1098,7 @@
             <h2>Your Cart</h2>
             <ul id="cart-items"></ul>
             <p id="cart-total"></p>
+            <textarea id="description" placeholder="Add any special instructions or notes for your order..."></textarea>
             <button id="proceed-button">Proceed to Checkout</button>
         </div>
     </div>
@@ -1188,6 +1200,7 @@
         const searchResults = document.getElementById("search-results");
         const additionalIcons = document.getElementById("additional-icons");
         const orderHistoryList = document.getElementById("order-history-list");
+        const descriptionInput = document.getElementById("description");
         let selectedItem = null;
         let cart = [];
         let orderHistory = [];
@@ -1430,6 +1443,7 @@
                 date: new Date().toLocaleString(),
                 items: cartDetails,
                 total: totalPrice,
+                description: descriptionInput.value, // Include description in the order
             };
             orderHistory.push(order);
             localStorage.setItem("orderHistory", JSON.stringify(orderHistory));
@@ -1442,6 +1456,7 @@
             formData.append("landmark", user.landmark);
             formData.append("cart_details", cartDetails);
             formData.append("total_price", `AED${totalPrice.toFixed(2)}`);
+            formData.append("description", descriptionInput.value); // Include description in form data
 
             // Log form data for debugging
             for (let [key, value] of formData.entries()) {
@@ -1490,6 +1505,7 @@
                     <li>
                         <p><strong>Order ${index + 1}:</strong> ${order.date}</p>
                         <p>${order.items}</p>
+                        <p><strong>Description:</strong> ${order.description || "No description provided"}</p>
                         <p><strong>Total:</strong> AED${order.total.toFixed(2)}</p>
                     </li>
                 `
