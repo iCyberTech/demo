@@ -93,21 +93,6 @@
             color: #ff6f61;
         }
 
-        /* Sign Up Button */
-        #signup-link {
-            background: #ff6f61;
-            padding: 10px 20px;
-            border-radius: 25px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-            transition: background 0.3s ease, transform 0.3s ease;
-        }
-
-        #signup-link:hover {
-            background: #ff4a3d;
-            transform: translateY(-2px);
-            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.3);
-        }
-
         /* Cart Icon with Shake and Bounce Animation */
         .cart-icon {
             position: relative;
@@ -828,9 +813,6 @@
             <img src="logo.jpeg" alt="Logo">
             <h1>Akua's Restaurant</h1>
         </div>
-        <div class="auth-links">
-            <a href="#" id="signup-link">Sign Up</a>
-        </div>
         <div class="cart-icon">
             <i class="fas fa-shopping-cart"></i>
             <span class="cart-count">0</span>
@@ -1131,6 +1113,7 @@
                 <h3>Order History</h3>
                 <ul id="order-history-list"></ul>
             </div>
+            <button id="delete-account-button" style="background: #ff6f61; color: #fff; padding: 10px 20px; border: none; border-radius: 25px; cursor: pointer; margin-top: 20px;">Delete Account</button>
         </div>
     </div>
 
@@ -1190,8 +1173,6 @@
         const cartItemsList = document.getElementById("cart-items");
         const cartTotal = document.getElementById("cart-total");
         const proceedButton = document.getElementById("proceed-button");
-        const signupLink = document.getElementById("signup-link");
-        const signupForm = document.getElementById("signup-form");
         const profileIcon = document.getElementById("profile-icon");
         const searchIcon = document.getElementById("search-icon");
         const homeIcon = document.getElementById("home-icon");
@@ -1201,6 +1182,7 @@
         const additionalIcons = document.getElementById("additional-icons");
         const orderHistoryList = document.getElementById("order-history-list");
         const descriptionInput = document.getElementById("description");
+        const deleteAccountButton = document.getElementById("delete-account-button");
         let selectedItem = null;
         let cart = [];
         let orderHistory = [];
@@ -1299,11 +1281,6 @@
             cartModal.style.display = "flex";
         });
 
-        // Open sign-up modal when sign-up link is clicked
-        signupLink.addEventListener("click", () => {
-            signupModal.style.display = "flex";
-        });
-
         // Open profile modal when profile icon is clicked
         profileIcon.addEventListener("click", () => {
             const user = JSON.parse(localStorage.getItem("user"));
@@ -1315,7 +1292,7 @@
                 updateOrderHistory();
                 profileModal.style.display = "flex";
             } else {
-                alert("Please sign up first.");
+                signupModal.style.display = "flex";
             }
         });
 
@@ -1388,6 +1365,15 @@
             localStorage.setItem("user", JSON.stringify(user));
             alert("Sign up successful!");
             signupModal.style.display = "none";
+        });
+
+        // Delete Account Functionality
+        deleteAccountButton.addEventListener("click", () => {
+            localStorage.removeItem("user");
+            localStorage.removeItem("orderHistory");
+            alert("Account deleted. Please sign up again.");
+            profileModal.style.display = "none";
+            signupModal.style.display = "flex";
         });
 
         // Search functionality
