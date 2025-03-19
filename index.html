@@ -49,36 +49,26 @@
         .logo h1 {
             font-size: 24px;
             font-weight: bold;
-            background: linear-gradient(135deg, #ff6f61, #ff4a3d);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
             position: relative;
             display: inline-block;
         }
 
-        .logo h1::after {
-            content: '';
-            position: absolute;
-            left: 0;
-            bottom: -5px;
-            width: 100%;
-            height: 3px;
-            background: #ff6f61;
-            border-radius: 2px;
-            animation: ladleUnderline 2s infinite ease-in-out;
+        .logo h1 span {
+            display: block;
+            line-height: 1.2;
         }
 
-        @keyframes ladleUnderline {
-            0% {
-                transform: scaleX(0.8);
-            }
-            50% {
-                transform: scaleX(1.2);
-            }
-            100% {
-                transform: scaleX(0.8);
-            }
+        .logo h1 span:nth-child(1) {
+            color: red;
+        }
+
+        .logo h1 span:nth-child(2) {
+            color: yellow;
+        }
+
+        .logo h1 span:nth-child(3) {
+            color: green;
         }
 
         .auth-links a {
@@ -826,7 +816,11 @@
     <header>
         <div class="logo">
             <img src="logo.jpeg" alt="Logo">
-            <h1>Akua's Restaurant</h1>
+            <h1>
+                <span>Akua's</span>
+                <span>Restaurant</span>
+                <span>Delight</span>
+            </h1>
         </div>
         <div class="auth-links">
             <a href="#" id="signup-link">Sign Up</a>
