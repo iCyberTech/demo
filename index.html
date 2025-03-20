@@ -819,26 +819,6 @@
             font-size: 14px;
             resize: vertical; /* Allow vertical resizing */
         }
-
-        /* Download App Button */
-        .download-app-button {
-            position: fixed;
-            bottom: 20px;
-            left: 20px;
-            background: #667eea;
-            color: #fff;
-            padding: 10px 20px;
-            border-radius: 25px;
-            font-size: 16px;
-            cursor: pointer;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3); /* Added shadow */
-            transition: background 0.3s ease, transform 0.3s ease;
-        }
-
-        .download-app-button:hover {
-            background: #764ba2;
-            transform: translateY(-2px);
-        }
     </style>
 </head>
 <body>
@@ -865,11 +845,6 @@
             <button>Shop Now</button>
         </div>
     </div>
-
-    <!-- Download App Button -->
-    <a href="https://example.com/path/to/your/app.apk" download="AkuaRestaurantApp.apk" class="download-app-button" id="download-app-button">
-        Download App
-    </a>
 
     <!-- Carousel for Sliding Products -->
     <div class="carousel">
@@ -1226,7 +1201,6 @@
         const additionalIcons = document.getElementById("additional-icons");
         const orderHistoryList = document.getElementById("order-history-list");
         const descriptionInput = document.getElementById("description");
-        const downloadAppButton = document.getElementById("download-app-button");
         let selectedItem = null;
         let cart = [];
         let orderHistory = [];
@@ -1538,7 +1512,7 @@
                             successModal.style.display = "none";
                         }, 5000);
                     } else {
-                        throw new Error("Failed,Check Internet Connection");
+                        throw new Error("Failed to send order details.");
                     }
                 })
                 .catch((error) => {
@@ -1563,7 +1537,6 @@
                 )
                 .join("");
         }
-
     </script>
 </body>
 </html>
