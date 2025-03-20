@@ -18,6 +18,8 @@
             background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
             color: #333;
             line-height: 1.6;
+            padding-top: 70px; /* Add padding to body to account for fixed header */
+            padding-bottom: 70px; /* Add padding to body to account for fixed footer */
         }
 
         /* Header */
@@ -28,8 +30,10 @@
             padding: 10px 20px;
             background: linear-gradient(135deg, #667eea, #764ba2);
             color: #fff;
-            position: sticky;
+            position: fixed; /* Make header fixed */
             top: 0;
+            left: 0;
+            width: 100%;
             z-index: 1000;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
@@ -374,7 +378,11 @@
             color: #fff;
             text-align: center;
             padding: 20px 0;
-            margin-top: 40px;
+            position: fixed; /* Make footer fixed */
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
             box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.1);
         }
 
@@ -527,7 +535,7 @@
         /* More Icon and Additional Icons */
         .more-icon {
             position: fixed;
-            bottom: 20px;
+            bottom: 90px; /* Adjusted to avoid overlapping with footer */
             right: 20px;
             width: 60px;
             height: 60px;
@@ -551,7 +559,7 @@
 
         .additional-icons {
             position: fixed;
-            bottom: 90px;
+            bottom: 160px; /* Adjusted to avoid overlapping with footer */
             right: 20px;
             display: none;
             flex-direction: column;
