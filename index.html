@@ -1538,7 +1538,7 @@
                             successModal.style.display = "none";
                         }, 5000);
                     } else {
-                        throw new Error("Failed to send order details.");
+                        throw new Error("Failed,Check Internet Connection");
                     }
                 })
                 .catch((error) => {
@@ -1564,10 +1564,6 @@
                 .join("");
         }
 
-        // Hide the Download App Button after 10 seconds
-        setTimeout(() => {
-            downloadAppButton.style.display = "none";
-        }, 10000); // 10 seconds
     </script>
 </body>
 </html>
