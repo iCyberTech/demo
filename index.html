@@ -85,31 +85,8 @@
             }
         }
 
-        .auth-links a {
-            color: #fff;
-            text-decoration: none;
-            margin-left: 10px;
-            font-weight: bold;
-            transition: color 0.3s ease;
-        }
-
-        .auth-links a:hover {
-            color: #ff6f61;
-        }
-
-        /* Sign Up Button */
-        #signup-link {
-            background: #ff6f61;
-            padding: 10px 20px;
-            border-radius: 25px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-            transition: background 0.3s ease, transform 0.3s ease;
-        }
-
-        #signup-link:hover {
-            background: #ff4a3d;
-            transform: translateY(-2px);
-            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.3);
+        .auth-links {
+            display: none; /* Hide the auth links in the header */
         }
 
         /* Cart Icon with Shake and Bounce Animation */
@@ -651,11 +628,6 @@
                 width: 95%;
             }
 
-            #signup-link {
-                padding: 8px 16px;
-                font-size: 14px;
-            }
-
             #proceed-button {
                 padding: 8px 16px;
                 font-size: 14px;
@@ -670,13 +642,6 @@
 
             .logo {
                 margin-bottom: 10px;
-            }
-
-            .auth-links {
-                margin-top: 10px;
-                display: flex;
-                flex-direction: column;
-                align-items: center;
             }
 
             .cart-icon {
@@ -702,11 +667,6 @@
             .product-card button {
                 font-size: 14px;
                 padding: 8px 16px;
-            }
-
-            #signup-link {
-                padding: 6px 12px;
-                font-size: 12px;
             }
 
             #proceed-button {
@@ -871,6 +831,24 @@
             background: #764ba2;
             transform: translateY(-2px);
         }
+
+        /* Sign Up/Logout Button in Profile Modal */
+        #profile-auth-button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background: #ff6f61;
+            color: #fff;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background 0.3s ease, transform 0.3s ease;
+        }
+
+        #profile-auth-button:hover {
+            background: #ff4a3d;
+            transform: translateY(-2px);
+        }
     </style>
 </head>
 <body>
@@ -881,7 +859,7 @@
             <h1>Akua's Restaurant</h1>
         </div>
         <div class="auth-links">
-            <a href="#" id="signup-link">Sign Up</a>
+            <!-- Removed the Sign Up/Logout button from here -->
         </div>
         <div class="cart-icon">
             <i class="fas fa-shopping-cart"></i>
@@ -1183,6 +1161,8 @@
                 <h3>Order History</h3>
                 <ul id="order-history-list"></ul>
             </div>
+            <!-- Added Sign Up/Logout Button Here -->
+            <button id="profile-auth-button"></button>
         </div>
     </div>
 
@@ -1253,7 +1233,6 @@
         const cartItemsList = document.getElementById("cart-items");
         const cartTotal = document.getElementById("cart-total");
         const proceedButton = document.getElementById("proceed-button");
-        const signupLink = document.getElementById("signup-link");
         const signupForm = document.getElementById("signup-form");
         const profileIcon = document.getElementById("profile-icon");
         const searchIcon = document.getElementById("search-icon");
@@ -1266,6 +1245,7 @@
         const descriptionInput = document.getElementById("description");
         const customAlertTitle = document.getElementById("custom-alert-title");
         const customAlertMessage = document.getElementById("custom-alert-message");
+        const profileAuthButton = document.getElementById("profile-auth-button");
         let selectedItem = null;
         let cart = [];
         let orderHistory = [];
@@ -1282,17 +1262,15 @@
             customAlertModal.style.display = "none";
         }
 
-        // Function to update the auth link (Sign Up/Logout)
-        function updateAuthLink() {
+        // Function to update the auth button in the profile modal
+        function updateAuthButton() {
             const user = JSON.parse(localStorage.getItem("user"));
             if (user) {
-                signupLink.textContent = "Logout";
-                signupLink.removeEventListener("click", openSignupModal);
-                signupLink.addEventListener("click", logoutUser);
+                profileAuthButton.textContent = "Logout";
+                profileAuthButton.onclick = logoutUser;
             } else {
-                signupLink.textContent = "Sign Up";
-                signupLink.removeEventListener("click", logoutUser);
-                signupLink.addEventListener("click", openSignupModal);
+                profileAuthButton.textContent = "Sign Up";
+                profileAuthButton.onclick = openSignupModal;
             }
         }
 
@@ -1305,11 +1283,11 @@
         function logoutUser() {
             localStorage.removeItem("user");
             showCustomAlert("Logged Out", "You have been logged out.");
-            updateAuthLink();
+            updateAuthButton();
         }
 
-        // Initialize auth link based on user state
-        updateAuthLink();
+        // Initialize auth button based on user state
+        updateAuthButton();
 
         // Toggle Additional Icons
         function toggleAdditionalIcons() {
@@ -1490,7 +1468,7 @@
             localStorage.setItem("user", JSON.stringify(user));
             showCustomAlert("Sign Up Successful", "Thank you for signing up!");
             signupModal.style.display = "none";
-            updateAuthLink(); // Update the auth link after sign-up
+            updateAuthButton(); // Update the auth button after sign-up
         });
 
         // Search functionality
