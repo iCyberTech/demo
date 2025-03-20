@@ -849,6 +849,28 @@
             background: #ff4a3d;
             transform: translateY(-2px);
         }
+
+        /* Sign Up Required Button */
+        #signup-required-button {
+            position: fixed;
+            bottom: 160px; /* Adjusted to avoid overlapping with footer */
+            left: 20px;
+            padding: 10px 20px;
+            background: #ff6f61;
+            color: #fff;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background 0.3s ease, transform 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+        }
+
+        #signup-required-button:hover {
+            background: #ff4a3d;
+            transform: translateY(-2px);
+        }
     </style>
 </head>
 <body>
@@ -1101,6 +1123,9 @@
         <div class="icon" onclick="showExtras()">Extras</div>
     </div>
 
+    <!-- Sign Up Required Button -->
+    <button id="signup-required-button" style="display: none;" onclick="openSignupModal()">Sign Up Required</button>
+
     <!-- Modal for Product Details -->
     <div id="popup-modal" class="modal">
         <div class="modal-content">
@@ -1246,6 +1271,7 @@
         const customAlertTitle = document.getElementById("custom-alert-title");
         const customAlertMessage = document.getElementById("custom-alert-message");
         const profileAuthButton = document.getElementById("profile-auth-button");
+        const signupRequiredButton = document.getElementById("signup-required-button");
         let selectedItem = null;
         let cart = [];
         let orderHistory = [];
@@ -1268,9 +1294,11 @@
             if (user) {
                 profileAuthButton.textContent = "Logout";
                 profileAuthButton.onclick = logoutUser;
+                signupRequiredButton.style.display = "none"; // Hide the sign-up required button
             } else {
                 profileAuthButton.textContent = "Sign Up";
                 profileAuthButton.onclick = openSignupModal;
+                signupRequiredButton.style.display = "block"; // Show the sign-up required button
             }
         }
 
@@ -1396,6 +1424,8 @@
             } else {
                 showCustomAlert("Sign Up Required", "Please sign up first.");
             }
+            <button id="signup-required-button" style="display: none;" onclick="openSignupModal()">Sign Up Required</button>
+
         });
 
         // Open search modal when search icon is clicked
