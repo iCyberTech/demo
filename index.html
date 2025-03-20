@@ -831,7 +831,7 @@
             border-radius: 25px;
             font-size: 16px;
             cursor: pointer;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3); /* Added shadow */
             transition: background 0.3s ease, transform 0.3s ease;
         }
 
@@ -867,7 +867,7 @@
     </div>
 
     <!-- Download App Button -->
-    <a href="https://example.com/path/to/your/app.apk" download="AkuaRestaurantApp.apk" class="download-app-button">
+    <a href="https://example.com/path/to/your/app.apk" download="AkuaRestaurantApp.apk" class="download-app-button" id="download-app-button">
         Download App
     </a>
 
@@ -1226,6 +1226,7 @@
         const additionalIcons = document.getElementById("additional-icons");
         const orderHistoryList = document.getElementById("order-history-list");
         const descriptionInput = document.getElementById("description");
+        const downloadAppButton = document.getElementById("download-app-button");
         let selectedItem = null;
         let cart = [];
         let orderHistory = [];
@@ -1562,6 +1563,11 @@
                 )
                 .join("");
         }
+
+        // Hide the Download App Button after 10 seconds
+        setTimeout(() => {
+            downloadAppButton.style.display = "none";
+        }, 10000); // 10 seconds
     </script>
 </body>
 </html>
