@@ -819,6 +819,50 @@
             font-size: 14px;
             resize: vertical; /* Allow vertical resizing */
         }
+
+        /* Custom Alert Modal */
+        #custom-alert-modal {
+            display: none;
+            justify-content: center;
+            align-items: center;
+            background: rgba(0, 0, 0, 0.8);
+        }
+
+        .custom-alert-content {
+            background: #fff;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        .custom-alert-content h2 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .custom-alert-content p {
+            font-size: 16px;
+            margin-bottom: 20px;
+            color: #666;
+        }
+
+        .custom-alert-content button {
+            padding: 10px 20px;
+            background: #667eea;
+            color: #fff;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background 0.3s ease, transform 0.3s ease;
+        }
+
+        .custom-alert-content button:hover {
+            background: #764ba2;
+            transform: translateY(-2px);
+        }
     </style>
 </head>
 <body>
@@ -1162,6 +1206,16 @@
         </div>
     </div>
 
+    <!-- Custom Alert Modal -->
+    <div id="custom-alert-modal" class="modal">
+        <div class="modal-content custom-alert-content">
+            <span class="close">&times;</span>
+            <h2 id="custom-alert-title"></h2>
+            <p id="custom-alert-message"></p>
+            <button onclick="closeCustomAlert()">OK</button>
+        </div>
+    </div>
+
     <!-- Footer -->
     <footer>
         <div class="nav-icons">
@@ -1181,6 +1235,7 @@
         const successModal = document.getElementById("success-modal");
         const foodsModal = document.getElementById("foods-modal");
         const extrasModal = document.getElementById("extras-modal");
+        const customAlertModal = document.getElementById("custom-alert-modal");
         const closeButtons = document.querySelectorAll(".close");
         const quantitySelect = document.getElementById("quantity");
         const totalPriceDisplay = document.getElementById("total-price");
@@ -1201,9 +1256,23 @@
         const additionalIcons = document.getElementById("additional-icons");
         const orderHistoryList = document.getElementById("order-history-list");
         const descriptionInput = document.getElementById("description");
+        const customAlertTitle = document.getElementById("custom-alert-title");
+        const customAlertMessage = document.getElementById("custom-alert-message");
         let selectedItem = null;
         let cart = [];
         let orderHistory = [];
+
+        // Function to show custom alert
+        function showCustomAlert(title, message) {
+            customAlertTitle.textContent = title;
+            customAlertMessage.textContent = message;
+            customAlertModal.style.display = "flex";
+        }
+
+        // Function to close custom alert
+        function closeCustomAlert() {
+            customAlertModal.style.display = "none";
+        }
 
         // Function to update the auth link (Sign Up/Logout)
         function updateAuthLink() {
@@ -1227,7 +1296,7 @@
         // Function to logout the user
         function logoutUser() {
             localStorage.removeItem("user");
-            alert("You have been logged out.");
+            showCustomAlert("Logged Out", "You have been logged out.");
             updateAuthLink();
         }
 
@@ -1339,7 +1408,7 @@
                 updateOrderHistory();
                 profileModal.style.display = "flex";
             } else {
-                alert("Please sign up first.");
+                showCustomAlert("Sign Up Required", "Please sign up first.");
             }
         });
 
@@ -1359,6 +1428,7 @@
                 successModal.style.display = "none";
                 foodsModal.style.display = "none";
                 extrasModal.style.display = "none";
+                customAlertModal.style.display = "none";
             });
         });
 
@@ -1410,7 +1480,7 @@
                 landmark: document.getElementById("landmark").value,
             };
             localStorage.setItem("user", JSON.stringify(user));
-            alert("Sign up successful!");
+            showCustomAlert("Sign Up Successful", "Thank you for signing up!");
             signupModal.style.display = "none";
             updateAuthLink(); // Update the auth link after sign-up
         });
@@ -1435,7 +1505,7 @@
             });
 
             if (!found) {
-                alert("No matching products found.");
+                showCustomAlert("No Results", "No matching products found.");
             }
         });
 
@@ -1448,7 +1518,7 @@
         proceedButton.addEventListener("click", () => {
             const user = JSON.parse(localStorage.getItem("user"));
             if (!user) {
-                alert("Please sign up first.");
+                showCustomAlert("Sign Up Required", "Please sign up first.");
                 return;
             }
 
@@ -1517,7 +1587,7 @@
                 })
                 .catch((error) => {
                     console.error("Formspree Error:", error);
-                    alert("Failed to send order details. Please try again.");
+                    showCustomAlert("Error", "Failed to send order details. Please try again.");
                 });
         });
 
