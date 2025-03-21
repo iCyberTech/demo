@@ -153,6 +153,7 @@
             font-size: 16px;
             transition: background 0.3s ease, transform 0.3s ease;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            border: 2px solid #fff;
         }
 
         #proceed-button:hover {
@@ -211,11 +212,14 @@
             transition: background 0.3s ease, transform 0.3s ease;
             z-index: 1;
             animation: fadeIn 1.5s ease-in-out;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            border: 2px solid #fff;
         }
 
         .hero button:hover {
             background: #ff4a3d;
             transform: translateY(-5px);
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.3);
         }
 
         @keyframes fadeInDown {
@@ -285,11 +289,14 @@
             cursor: pointer;
             font-size: 16px;
             transition: background 0.3s ease, transform 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            border: 2px solid #fff;
         }
 
         .product-card button:hover {
             background: #764ba2;
             transform: translateY(-3px);
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.3);
         }
 
         /* Highlighted Product */
@@ -339,6 +346,8 @@
             padding: 10px;
             cursor: pointer;
             z-index: 100;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            border: 2px solid #fff;
         }
 
         .carousel-control.prev {
@@ -373,11 +382,21 @@
             font-size: 24px;
             cursor: pointer;
             transition: transform 0.3s ease, color 0.3s ease;
+            animation: float 3s infinite ease-in-out;
         }
 
         .nav-icons i:hover {
             transform: scale(1.2);
             color: #ff6f61;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
         }
 
         /* Modal Styles */
@@ -403,6 +422,8 @@
             text-align: center;
             position: relative;
             animation: fadeIn 0.3s ease-in-out;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            border: 2px solid #fff;
         }
 
         .close {
@@ -452,11 +473,14 @@
             cursor: pointer;
             font-size: 16px;
             transition: background 0.3s ease, transform 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            border: 2px solid #fff;
         }
 
         #buy-button:hover {
             background: #ff4a3d;
             transform: translateY(-3px);
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.3);
         }
 
         /* Success Modal Styles */
@@ -753,11 +777,14 @@
             font-size: 16px;
             cursor: pointer;
             transition: background 0.3s ease, transform 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            border: 2px solid #fff;
         }
 
         #signup-form button:hover {
             background: #ff4a3d;
             transform: translateY(-2px);
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.3);
         }
 
         /* Mobile Keyboard Responsiveness */
@@ -825,11 +852,14 @@
             cursor: pointer;
             font-size: 16px;
             transition: background 0.3s ease, transform 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            border: 2px solid #fff;
         }
 
         .custom-alert-content button:hover {
             background: #764ba2;
             transform: translateY(-2px);
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.3);
         }
 
         /* Sign Up/Logout Button in Profile Modal */
@@ -843,11 +873,14 @@
             cursor: pointer;
             font-size: 16px;
             transition: background 0.3s ease, transform 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            border: 2px solid #fff;
         }
 
         #profile-auth-button:hover {
             background: #ff4a3d;
             transform: translateY(-2px);
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.3);
         }
 
         /* Sign Up Required Button */
@@ -865,11 +898,13 @@
             transition: background 0.3s ease, transform 0.3s ease;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
             z-index: 1000;
+            border: 2px solid #fff;
         }
 
         #signup-required-button:hover {
             background: #ff4a3d;
             transform: translateY(-2px);
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.3);
         }
     </style>
 </head>
