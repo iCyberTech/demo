@@ -6,8 +6,10 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="mobile-web-app-capable" content="yes">
     <title>Akua's Restaurant</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://kit.fontawesome.com/334e9957b6.js" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <style>
         /* General Styles */
         * {
@@ -18,7 +20,7 @@
 
         body {
             font-family: 'Poppins', sans-serif;
-            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            background-color: #d1d9eb;
             color: #334155;
             line-height: 1.6;
             padding-top: 80px;
@@ -47,14 +49,14 @@
             left: 0;
             width: 100%;
             z-index: 1000;
-            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.05);
+            box-shadow: 7px 7px 17px -2px rgba(0,0,0,0.5), -7px -7px 17px -2px rgba(255,255,255,7);
             transition: all 0.3s ease;
             border-bottom: 1px solid #e2e8f0;
         }
 
         header.scrolled {
             padding: 10px 5%;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            box-shadow: 7px 7px 17px -2px rgba(0,0,0,0.5), -7px -7px 17px -2px rgba(255,255,255,7);
             background: linear-gradient(to right, #ffffff 0%, #f8fafc 100%);
         }
 
@@ -70,7 +72,7 @@
             border-radius: 50%;
             object-fit: cover;
             border: 2px solid #2563eb;
-            box-shadow: 0 2px 8px rgba(37, 99, 235, 0.2);
+            box-shadow: 7px 7px 17px -2px rgba(0,0,0,0.5), -7px -7px 17px -2px rgba(255,255,255,7);
         }
 
         .logo h1 {
@@ -118,13 +120,13 @@
             padding: 10px;
             border-radius: 50%;
             border: 1px solid #cbd5e1;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            box-shadow: 7px 7px 17px -2px rgba(0,0,0,0.5), -7px -7px 17px -2px rgba(255,255,255,7);
         }
 
         .cart-icon:hover i {
             color: #2563eb;
             transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(37, 99, 235, 0.2);
+            box-shadow: inset 1px 1px 8px -2px rgba(0,0,0,0.5), inset -2px -2px 8px -2px rgba(255,255,255,7);
         }
 
         .cart-count {
@@ -138,7 +140,7 @@
             right: -8px;
             font-weight: 600;
             border: 2px solid white;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            box-shadow: 7px 7px 17px -2px rgba(0,0,0,0.5), -7px -7px 17px -2px rgba(255,255,255,7);
         }
 
         /* Hero Section */
@@ -165,7 +167,7 @@
             border-radius: 15px;
             backdrop-filter: blur(5px);
             border: 1px solid rgba(255, 255, 255, 0.1);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            box-shadow: 7px 7px 17px -2px rgba(0,0,0,0.5), -7px -7px 17px -2px rgba(255,255,255,7);
         }
 
         .hero h2 {
@@ -190,7 +192,7 @@
             font-size: 1rem;
             font-weight: 500;
             transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(37, 99, 235, 0.4);
+            box-shadow: 7px 7px 17px -2px rgba(0,0,0,0.5), -7px -7px 17px -2px rgba(255,255,255,7);
             border: 1px solid rgba(255, 255, 255, 0.2);
             text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
         }
@@ -198,7 +200,7 @@
         .hero button:hover {
             background: linear-gradient(to right, #1d4ed8 0%, #1e40af 100%);
             transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(37, 99, 235, 0.5);
+            box-shadow: inset 1px 1px 8px -2px rgba(0,0,0,0.5), inset -2px -2px 8px -2px rgba(255,255,255,7);
         }
 
         /* Carousel */
@@ -208,7 +210,7 @@
             overflow: hidden;
             margin: 40px 0;
             border-radius: 10px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            box-shadow: 7px 7px 17px -2px rgba(0,0,0,0.5), -7px -7px 17px -2px rgba(255,255,255,7);
             border: 1px solid #e2e8f0;
         }
 
@@ -244,7 +246,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            box-shadow: 7px 7px 17px -2px rgba(0,0,0,0.5), -7px -7px 17px -2px rgba(255,255,255,7);
             transition: all 0.3s ease;
             background: linear-gradient(135deg, #ffffff 0%, #f1f5f9 100%);
         }
@@ -252,7 +254,7 @@
         .carousel-control:hover {
             background: linear-gradient(135deg, #ffffff 0%, #e2e8f0 100%);
             transform: translateY(-50%) scale(1.1);
-            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+            box-shadow: inset 1px 1px 8px -2px rgba(0,0,0,0.5), inset -2px -2px 8px -2px rgba(255,255,255,7);
         }
 
         .carousel-control.prev {
@@ -290,7 +292,7 @@
             height: 3px;
             background: linear-gradient(to right, #2563eb 0%, #1d4ed8 100%);
             border-radius: 3px;
-            box-shadow: 0 2px 5px rgba(37, 99, 235, 0.3);
+            box-shadow: 7px 7px 17px -2px rgba(37, 99, 235, 0.3);
         }
 
         /* Product Grid */
@@ -308,14 +310,14 @@
             overflow: hidden;
             text-align: center;
             transition: all 0.3s ease;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            box-shadow: 7px 7px 17px -2px rgba(0,0,0,0.5), -7px -7px 17px -2px rgba(255,255,255,7);
             position: relative;
             border: 1px solid #e2e8f0;
         }
 
         .product-card:hover {
             transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+            box-shadow: 7px 7px 17px -2px rgba(0,0,0,0.5), -7px -7px 17px -2px rgba(255,255,255,7);
             border-color: #cbd5e1;
         }
 
@@ -365,14 +367,14 @@
             font-size: 0.9rem;
             font-weight: 500;
             transition: all 0.3s ease;
-            box-shadow: 0 4px 10px rgba(37, 99, 235, 0.3);
+            box-shadow: 7px 7px 17px -2px rgba(0,0,0,0.5), -7px -7px 17px -2px rgba(255,255,255,7);
             border: 1px solid rgba(255, 255, 255, 0.2);
         }
 
         .product-card button:hover {
             background: linear-gradient(to right, #1d4ed8 0%, #1e40af 100%);
             transform: translateY(-2px);
-            box-shadow: 0 6px 15px rgba(37, 99, 235, 0.4);
+            box-shadow: inset 1px 1px 8px -2px rgba(0,0,0,0.5), inset -2px -2px 8px -2px rgba(255,255,255,7);
         }
 
         /* Highlighted Product */
@@ -393,7 +395,7 @@
             font-size: 0.8rem;
             font-weight: 600;
             z-index: 1;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            box-shadow: 7px 7px 17px -2px rgba(0,0,0,0.5), -7px -7px 17px -2px rgba(255,255,255,7);
             border: 1px solid rgba(255, 255, 255, 0.2);
         }
 
@@ -409,7 +411,7 @@
             width: 100%;
             z-index: 1000;
             border-top: 1px solid #334155;
-            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+            box-shadow: 7px 7px 17px -2px rgba(0,0,0,0.5), -7px -7px 17px -2px rgba(255,255,255,7);
         }
 
         .nav-icons {
@@ -429,14 +431,14 @@
             border-radius: 50%;
             background: rgba(255, 255, 255, 0.1);
             border: 1px solid rgba(255, 255, 255, 0.1);
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            box-shadow: 7px 7px 17px -2px rgba(0,0,0,0.5), -7px -7px 17px -2px rgba(255,255,255,7);
         }
 
         .nav-icons i:hover {
             color: #60a5fa;
             transform: translateY(-5px);
             background: rgba(96, 165, 250, 0.2);
-            box-shadow: 0 4px 10px rgba(96, 165, 250, 0.2);
+            box-shadow: inset 1px 1px 8px -2px rgba(0,0,0,0.5), inset -2px -2px 8px -2px rgba(255,255,255,7);
         }
 
         .nav-icons i.active {
@@ -468,7 +470,7 @@
             max-width: 450px;
             text-align: center;
             position: relative;
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+            box-shadow: 7px 7px 17px -2px rgba(0,0,0,0.5), -7px -7px 17px -2px rgba(255,255,255,7);
             animation: slideUp 0.4s ease-in-out;
             max-height: 80vh;
             overflow-y: auto;
@@ -496,7 +498,7 @@
             justify-content: center;
             border-radius: 50%;
             border: 1px solid #e2e8f0;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            box-shadow: 7px 7px 17px -2px rgba(0,0,0,0.5), -7px -7px 17px -2px rgba(255,255,255,7);
         }
 
         .close:hover {
@@ -512,7 +514,7 @@
             border-radius: 10px;
             margin-bottom: 20px;
             border: 1px solid #e2e8f0;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            box-shadow: 7px 7px 17px -2px rgba(0,0,0,0.5), -7px -7px 17px -2px rgba(255,255,255,7);
         }
 
         #modal-name {
@@ -556,7 +558,7 @@
             font-size: 1rem;
             font-weight: 500;
             transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(37, 99, 235, 0.4);
+            box-shadow: 7px 7px 17px -2px rgba(0,0,0,0.5), -7px -7px 17px -2px rgba(255,255,255,7);
             border: 1px solid rgba(255, 255, 255, 0.2);
             width: 100%;
         }
@@ -564,7 +566,7 @@
         #buy-button:hover {
             background: linear-gradient(to right, #1d4ed8 0%, #1e40af 100%);
             transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(37, 99, 235, 0.5);
+            box-shadow: inset 1px 1px 8px -2px rgba(0,0,0,0.5), inset -2px -2px 8px -2px rgba(255,255,255,7);
         }
 
         /* Cart Modal */
@@ -589,7 +591,7 @@
             object-fit: cover;
             border-radius: 10px;
             border: 1px solid #e2e8f0;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            box-shadow: 7px 7px 17px -2px rgba(0,0,0,0.5), -7px -7px 17px -2px rgba(255,255,255,7);
         }
 
         .cart-item-details {
@@ -627,7 +629,7 @@
             justify-content: center;
             border-radius: 50%;
             border: 1px solid #e2e8f0;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            box-shadow: 7px 7px 17px -2px rgba(0,0,0,0.5), -7px -7px 17px -2px rgba(255,255,255,7);
         }
 
         .cart-item-remove:hover {
@@ -669,7 +671,7 @@
             font-size: 1rem;
             font-weight: 500;
             transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(37, 99, 235, 0.4);
+            box-shadow: 7px 7px 17px -2px rgba(0,0,0,0.5), -7px -7px 17px -2px rgba(255,255,255,7);
             border: 1px solid rgba(255, 255, 255, 0.2);
             width: 100%;
         }
@@ -677,7 +679,7 @@
         #proceed-button:hover {
             background: linear-gradient(to right, #1d4ed8 0%, #1e40af 100%);
             transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(37, 99, 235, 0.5);
+            box-shadow: inset 1px 1px 8px -2px rgba(0,0,0,0.5), inset -2px -2px 8px -2px rgba(255,255,255,7);
         }
 
         /* Sign-Up Modal */
@@ -727,14 +729,14 @@
             cursor: pointer;
             transition: all 0.3s ease;
             margin-top: 10px;
-            box-shadow: 0 4px 10px rgba(37, 99, 235, 0.3);
+            box-shadow: 7px 7px 17px -2px rgba(0,0,0,0.5), -7px -7px 17px -2px rgba(255,255,255,7);
             border: 1px solid rgba(255, 255, 255, 0.2);
         }
 
         #signup-form button:hover {
             background: linear-gradient(to right, #1d4ed8 0%, #1e40af 100%);
             transform: translateY(-2px);
-            box-shadow: 0 6px 15px rgba(37, 99, 235, 0.4);
+            box-shadow: inset 1px 1px 8px -2px rgba(0,0,0,0.5), inset -2px -2px 8px -2px rgba(255,255,255,7);
         }
 
         /* Profile Modal */
@@ -782,7 +784,7 @@
             padding: 15px;
             border-radius: 10px;
             margin-bottom: 15px;
-            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+            box-shadow: 7px 7px 17px -2px rgba(0,0,0,0.5), -7px -7px 17px -2px rgba(255,255,255,7);
             border: 1px solid #e2e8f0;
         }
 
@@ -803,14 +805,14 @@
             cursor: pointer;
             transition: all 0.3s ease;
             margin-top: 20px;
-            box-shadow: 0 4px 10px rgba(37, 99, 235, 0.3);
+            box-shadow: 7px 7px 17px -2px rgba(0,0,0,0.5), -7px -7px 17px -2px rgba(255,255,255,7);
             border: 1px solid rgba(255, 255, 255, 0.2);
         }
 
         #profile-auth-button:hover {
             background: linear-gradient(to right, #1d4ed8 0%, #1e40af 100%);
             transform: translateY(-2px);
-            box-shadow: 0 6px 15px rgba(37, 99, 235, 0.4);
+            box-shadow: inset 1px 1px 8px -2px rgba(0,0,0,0.5), inset -2px -2px 8px -2px rgba(255,255,255,7);
         }
 
         /* Search Modal */
@@ -835,14 +837,14 @@
             font-size: 1rem;
             font-weight: 500;
             transition: all 0.3s ease;
-            box-shadow: 0 4px 10px rgba(37, 99, 235, 0.3);
+            box-shadow: 7px 7px 17px -2px rgba(0,0,0,0.5), -7px -7px 17px -2px rgba(255,255,255,7);
             border: 1px solid rgba(255, 255, 255, 0.2);
         }
 
         #search-form button:hover {
             background: linear-gradient(to right, #1d4ed8 0%, #1e40af 100%);
             transform: translateY(-2px);
-            box-shadow: 0 6px 15px rgba(37, 99, 235, 0.4);
+            box-shadow: inset 1px 1px 8px -2px rgba(0,0,0,0.5), inset -2px -2px 8px -2px rgba(255,255,255,7);
         }
 
         #search-results {
@@ -912,7 +914,7 @@
             font-size: 16px;
             font-weight: 600;
             cursor: pointer;
-            box-shadow: 0 6px 20px rgba(37, 99, 235, 0.4);
+            box-shadow: 7px 7px 17px -2px rgba(0,0,0,0.5), -7px -7px 17px -2px rgba(255,255,255,7);
             transition: all 0.3s ease;
             z-index: 999;
             border: 2px solid rgba(255, 255, 255, 0.2);
@@ -921,7 +923,7 @@
         .more-icon:hover {
             background: linear-gradient(to right, #1d4ed8 0%, #1e40af 100%);
             transform: scale(1.1);
-            box-shadow: 0 8px 25px rgba(37, 99, 235, 0.5);
+            box-shadow: inset 1px 1px 8px -2px rgba(0,0,0,0.5), inset -2px -2px 8px -2px rgba(255,255,255,7);
         }
 
         .additional-icons {
@@ -946,7 +948,7 @@
             font-size: 14px;
             font-weight: 600;
             cursor: pointer;
-            box-shadow: 0 6px 20px rgba(37, 99, 235, 0.4);
+            box-shadow: 7px 7px 17px -2px rgba(0,0,0,0.5), -7px -7px 17px -2px rgba(255,255,255,7);
             transition: all 0.3s ease;
             border: 2px solid rgba(255, 255, 255, 0.2);
         }
@@ -954,7 +956,7 @@
         .additional-icons .icon:hover {
             background: linear-gradient(to right, #1d4ed8 0%, #1e40af 100%);
             transform: scale(1.1);
-            box-shadow: 0 8px 25px rgba(37, 99, 235, 0.5);
+            box-shadow: inset 1px 1px 8px -2px rgba(0,0,0,0.5), inset -2px -2px 8px -2px rgba(255,255,255,7);
         }
 
         /* Sign Up Required Button */
@@ -971,7 +973,7 @@
             font-size: 16px;
             font-weight: 600;
             transition: all 0.3s ease;
-            box-shadow: 0 6px 20px rgba(37, 99, 235, 0.4);
+            box-shadow: 7px 7px 17px -2px rgba(0,0,0,0.5), -7px -7px 17px -2px rgba(255,255,255,7);
             z-index: 999;
             display: none;
             border: 2px solid rgba(255, 255, 255, 0.2);
@@ -980,7 +982,7 @@
         #signup-required-button:hover {
             background: linear-gradient(to right, #1d4ed8 0%, #1e40af 100%);
             transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(37, 99, 235, 0.5);
+            box-shadow: inset 1px 1px 8px -2px rgba(0,0,0,0.5), inset -2px -2px 8px -2px rgba(255,255,255,7);
         }
 
         /* Animations */
@@ -1009,6 +1011,15 @@
         @keyframes moveTruck {
             0% { left: -100%; }
             100% { left: 100%; }
+        }
+
+        /* Blob Animation */
+        @keyframes bari {
+            0% {border-radius: 40% 60% 65% 35% / 35% 55% 45% 65%; transform: rotate(0deg);}
+            25% {border-radius: 65% 35% 40% 60% / 55% 40% 60% 45%;}
+            50% {border-radius: 35% 65% 50% 50% / 65% 55% 45% 35%;}
+            75% {border-radius: 55% 45% 45% 55% / 60% 45% 55% 40%;}
+            100% {border-radius: 40% 60% 65% 35% / 35% 55% 45% 65%; transform: rotate(360deg);}
         }
 
         /* Responsive Design */
