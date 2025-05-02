@@ -880,6 +880,54 @@
             box-shadow: 0 6px 20px rgba(212, 163, 115, 0.5);
         }
 
+        /* Enhanced Alert Modal */
+        #custom-alert-modal .modal-content {
+            max-width: 400px;
+            text-align: center;
+            padding: 30px;
+        }
+
+        #custom-alert-title {
+            font-size: 1.5rem;
+            color: #d4a373;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        #custom-alert-message {
+            font-size: 1rem;
+            color: #555;
+            margin-bottom: 25px;
+            line-height: 1.5;
+        }
+
+        #custom-alert-modal button {
+            padding: 12px 30px;
+            background: #d4a373;
+            color: #fff;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(212, 163, 115, 0.3);
+            width: 100%;
+        }
+
+        #custom-alert-modal button:hover {
+            background: #c08c5f;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(212, 163, 115, 0.4);
+        }
+
+        .alert-icon {
+            font-size: 50px;
+            margin-bottom: 20px;
+            color: #d4a373;
+            animation: bounce 1s ease-in-out;
+        }
+
         /* Animations */
         @keyframes fadeIn {
             from { opacity: 0; }
@@ -906,6 +954,12 @@
         @keyframes moveTruck {
             0% { left: -100%; }
             100% { left: 100%; }
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
         }
 
         /* Responsive Design */
@@ -1454,10 +1508,11 @@
         </div>
     </div>
 
-    <!-- Custom Alert Modal -->
+    <!-- Enhanced Custom Alert Modal -->
     <div id="custom-alert-modal" class="modal">
-        <div class="modal-content custom-alert-content">
+        <div class="modal-content">
             <span class="close">&times;</span>
+            <div class="alert-icon" id="alert-icon"></div>
             <h2 id="custom-alert-title"></h2>
             <p id="custom-alert-message"></p>
             <button onclick="closeCustomAlert()">OK</button>
@@ -1484,6 +1539,7 @@
         const foodsModal = document.getElementById("foods-modal");
         const extrasModal = document.getElementById("extras-modal");
         const customAlertModal = document.getElementById("custom-alert-modal");
+        const alertIcon = document.getElementById("alert-icon");
         const closeButtons = document.querySelectorAll(".close");
         const quantitySelect = document.getElementById("quantity");
         const totalPriceDisplay = document.getElementById("total-price");
@@ -1521,10 +1577,32 @@
             }
         });
 
-        // Custom alert functions
-        function showCustomAlert(title, message) {
+        // Enhanced custom alert functions
+        function showCustomAlert(title, message, type = 'info') {
             customAlertTitle.textContent = title;
             customAlertMessage.textContent = message;
+            
+            // Set appropriate icon based on alert type
+            switch(type) {
+                case 'success':
+                    alertIcon.className = 'alert-icon fas fa-check-circle';
+                    alertIcon.style.color = '#4CAF50';
+                    break;
+                case 'error':
+                    alertIcon.className = 'alert-icon fas fa-exclamation-circle';
+                    alertIcon.style.color = '#F44336';
+                    break;
+                case 'warning':
+                    alertIcon.className = 'alert-icon fas fa-exclamation-triangle';
+                    alertIcon.style.color = '#FF9800';
+                    break;
+                case 'info':
+                default:
+                    alertIcon.className = 'alert-icon fas fa-info-circle';
+                    alertIcon.style.color = '#2196F3';
+                    break;
+            }
+            
             customAlertModal.style.display = "flex";
         }
 
@@ -1556,7 +1634,7 @@
 
         function logoutUser() {
             localStorage.removeItem("user");
-            showCustomAlert("Logged Out", "You have been successfully logged out.");
+            showCustomAlert("Logged Out", "You have been successfully logged out. We hope to see you again soon!", 'info');
             updateAuthButton();
             profileModal.style.display = "none";
         }
@@ -1603,6 +1681,11 @@
         const user = JSON.parse(localStorage.getItem("user"));
         if (!user) {
             setTimeout(() => {
+                showCustomAlert(
+                    "Welcome to Akua's Restaurant!", 
+                    "To place an order and enjoy our delicious Ghanaian cuisine, please create an account first.", 
+                    'info'
+                );
                 signupModal.style.display = "flex";
             }, 2000);
         }
@@ -1646,7 +1729,11 @@
             updateCartCount();
             updateCartTotal();
             modal.style.display = "none";
-            showCustomAlert("Added to Cart", `${quantity} x ${selectedItem.name} has been added to your cart.`);
+            showCustomAlert(
+                "Added to Cart", 
+                `${quantity} x ${selectedItem.name} has been added to your cart. Continue shopping or proceed to checkout.`, 
+                'success'
+            );
         });
 
         // Cart functionality
@@ -1681,7 +1768,11 @@
             const removedItem = cart.splice(index, 1)[0];
             updateCartCount();
             updateCartItems();
-            showCustomAlert("Item Removed", `${removedItem.name} has been removed from your cart.`);
+            showCustomAlert(
+                "Item Removed", 
+                `${removedItem.name} has been removed from your cart. You can always add it back if you change your mind.`, 
+                'info'
+            );
         }
 
         function updateCartTotal() {
@@ -1704,7 +1795,11 @@
                 document.querySelectorAll('.nav-icons i').forEach(icon => icon.classList.remove('active'));
                 profileIcon.classList.add('active');
             } else {
-                showCustomAlert("Sign Up Required", "Please create an account to view your profile.");
+                showCustomAlert(
+                    "Account Required", 
+                    "To view your profile and order history, please sign up or log in to your account.", 
+                    'warning'
+                );
                 signupModal.style.display = "flex";
             }
         });
@@ -1750,14 +1845,42 @@
         // User registration
         signupForm.addEventListener("submit", (e) => {
             e.preventDefault();
+            const name = document.getElementById("name").value.trim();
+            const phone = document.getElementById("phone").value.trim();
+            const location = document.getElementById("location").value.trim();
+            const landmark = document.getElementById("landmark").value.trim();
+            
+            // Basic validation
+            if (!name || !phone || !location || !landmark) {
+                showCustomAlert(
+                    "Incomplete Information", 
+                    "Please fill in all the required fields to create your account.", 
+                    'warning'
+                );
+                return;
+            }
+            
+            if (!/^[0-9]{10,15}$/.test(phone)) {
+                showCustomAlert(
+                    "Invalid Phone Number", 
+                    "Please enter a valid phone number (10-15 digits).", 
+                    'warning'
+                );
+                return;
+            }
+
             const user = {
-                name: document.getElementById("name").value,
-                phone: document.getElementById("phone").value,
-                location: document.getElementById("location").value,
-                landmark: document.getElementById("landmark").value,
+                name: name,
+                phone: phone,
+                location: location,
+                landmark: landmark,
             };
             localStorage.setItem("user", JSON.stringify(user));
-            showCustomAlert("Welcome!", "Thank you for signing up with Akua's Restaurant.");
+            showCustomAlert(
+                "Welcome to Akua's Restaurant!", 
+                "Thank you for signing up! You can now place orders and track your order history.", 
+                'success'
+            );
             signupModal.style.display = "none";
             updateAuthButton();
         });
@@ -1765,7 +1888,17 @@
         // Search functionality
         searchForm.addEventListener("submit", (e) => {
             e.preventDefault();
-            const query = searchInput.value.toLowerCase();
+            const query = searchInput.value.toLowerCase().trim();
+            
+            if (!query) {
+                showCustomAlert(
+                    "Empty Search", 
+                    "Please enter a dish name or keyword to search our menu.", 
+                    'warning'
+                );
+                return;
+            }
+            
             const products = document.querySelectorAll(".product-card");
             let found = false;
 
@@ -1782,24 +1915,37 @@
             });
 
             if (!found) {
-                showCustomAlert("No Results", "We couldn't find any items matching your search.");
+                showCustomAlert(
+                    "No Results Found", 
+                    `We couldn't find any items matching "${query}". Try searching for something else or browse our full menu.`, 
+                    'info'
+                );
             }
             
             searchModal.style.display = "none";
+            searchInput.value = "";
         });
 
         // Checkout functionality
         proceedButton.addEventListener("click", () => {
             const user = JSON.parse(localStorage.getItem("user"));
             if (!user) {
-                showCustomAlert("Sign Up Required", "Please create an account to proceed with your order.");
+                showCustomAlert(
+                    "Account Required", 
+                    "To place your order, please create an account or log in. It only takes a moment!", 
+                    'warning'
+                );
                 signupModal.style.display = "flex";
                 cartModal.style.display = "none";
                 return;
             }
 
             if (cart.length === 0) {
-                showCustomAlert("Empty Cart", "Your cart is empty. Please add some items before checkout.");
+                showCustomAlert(
+                    "Your Cart is Empty", 
+                    "Add some delicious Ghanaian dishes to your cart before proceeding to checkout.", 
+                    'info'
+                );
                 return;
             }
 
@@ -1834,6 +1980,10 @@
             formData.append("total_price", `AED${totalPrice.toFixed(2)}`);
             formData.append("description", descriptionInput.value);
 
+            // Show loading state
+            proceedButton.disabled = true;
+            proceedButton.textContent = "Processing...";
+
             // Send to Formspree
             fetch("https://formspree.io/f/mzzedlrr", {
                 method: "POST",
@@ -1850,6 +2000,8 @@
                         updateCartItems();
                         cartModal.style.display = "none";
                         descriptionInput.value = "";
+                        proceedButton.disabled = false;
+                        proceedButton.textContent = "Proceed to Checkout";
 
                         setTimeout(() => {
                             successModal.style.display = "none";
@@ -1860,13 +2012,30 @@
                 })
                 .catch((error) => {
                     console.error("Error:", error);
-                    showCustomAlert("Error", "There was a problem submitting your order. Please try again.");
+                    showCustomAlert(
+                        "Order Submission Failed", 
+                        "We encountered an issue while processing your order. Please check your connection and try again. If the problem persists, you can call us directly to place your order.", 
+                        'error'
+                    );
+                    proceedButton.disabled = false;
+                    proceedButton.textContent = "Proceed to Checkout";
                 });
         });
 
         // Update order history
         function updateOrderHistory() {
             const orderHistory = JSON.parse(localStorage.getItem("orderHistory")) || [];
+            
+            if (orderHistory.length === 0) {
+                orderHistoryList.innerHTML = `
+                    <li style="text-align: center; padding: 20px;">
+                        <p>You haven't placed any orders yet.</p>
+                        <p>Browse our menu and place your first order!</p>
+                    </li>
+                `;
+                return;
+            }
+            
             orderHistoryList.innerHTML = orderHistory
                 .map(
                     (order, index) => `
@@ -1884,6 +2053,22 @@
         // Initialize
         document.addEventListener('DOMContentLoaded', function() {
             updateAuthButton();
+            updateOrderHistory();
+            
+            // Load any existing order history
+            orderHistory = JSON.parse(localStorage.getItem("orderHistory")) || [];
+            
+            // Show welcome message if new user
+            if (!localStorage.getItem("welcomeShown")) {
+                setTimeout(() => {
+                    showCustomAlert(
+                        "Welcome to Akua's Restaurant", 
+                        "Discover authentic Ghanaian flavors crafted with love and tradition. Start by browsing our menu!", 
+                        'info'
+                    );
+                    localStorage.setItem("welcomeShown", "true");
+                }, 1000);
+            }
         });
     </script>
 </body>
